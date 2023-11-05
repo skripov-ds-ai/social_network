@@ -2,6 +2,7 @@ package app
 
 import (
 	"context"
+
 	"github.com/skripov-ds-ai/social_network/generated"
 )
 
@@ -18,6 +19,13 @@ type UserHandler interface {
 type Handler struct {
 	LoginHandler
 	UserHandler
+}
+
+func NewHandler(login LoginHandler, user UserHandler) *Handler {
+	return &Handler{
+		LoginHandler: login,
+		UserHandler:  user,
+	}
 }
 
 // DialogUserIDListGet implements GET /dialog/{user_id}/list operation.
